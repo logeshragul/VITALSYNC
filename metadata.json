@@ -1,0 +1,8 @@
+{
+  "name": "VitalSync AI",
+  "description": "Real-time blood pressure and glucose monitoring dashboard with live camera HUD.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
