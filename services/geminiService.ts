@@ -1,14 +1,14 @@
 import { GoogleGenAI, LiveServerMessage, Modality } from "@google/genai";
 import { AspectRatio } from "../types";
 
-// Initialize Gemini Client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Note: GoogleGenAI is initialized inside functions to ensure process.env.API_KEY is available at runtime.
 
 /**
  * Uses Gemini Flash Lite for fast, low-latency responses.
  */
 export const getFastHealthAdvice = async (prompt: string): Promise<string> => {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: 'gemini-flash-lite-latest',
       contents: prompt,
@@ -28,6 +28,7 @@ export const getFastHealthAdvice = async (prompt: string): Promise<string> => {
  */
 export const getDeepThinkingAnalysis = async (prompt: string): Promise<string> => {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: prompt,
@@ -49,6 +50,7 @@ export const getDeepThinkingAnalysis = async (prompt: string): Promise<string> =
  */
 export const analyzeHealthImage = async (base64Image: string, prompt: string): Promise<string> => {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: {
@@ -77,6 +79,7 @@ export const analyzeHealthImage = async (base64Image: string, prompt: string): P
  */
 export const generateRelaxationImage = async (prompt: string, aspectRatio: AspectRatio): Promise<string | null> => {
   try {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-image-preview',
       contents: {
@@ -117,6 +120,7 @@ export type LiveSessionCallbacks = {
  * Connects to Gemini Live API
  */
 export const connectToLiveSession = async (callbacks: LiveSessionCallbacks) => {
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   return await ai.live.connect({
     model: 'gemini-2.5-flash-native-audio-preview-09-2025',
     config: {
