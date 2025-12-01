@@ -25,3 +25,9 @@ export interface ChatMessage {
   text: string;
   isThinking?: boolean;
 }
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+}
